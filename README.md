@@ -1,12 +1,24 @@
-# MQClient
-
-[![Discord](https://img.shields.io/badge/chat-on%20discord-7289da.svg?logo=discord)](https://discord.gg/sA4kmsxC7N)[![License](https://img.shields.io/github/license/FeroxFoxxo/MQClient)](https://github.com/FeroxFoxxo/MQClient/blob/master/LICENSE.md)
-
-An Electron app that allows you to easily join MQ servers.
-
-It automatically embeds the game, all in a few clicks!
-
-For an overview of how the game client worked originally, please see [this section in the MQReawakened README](https://github.com/FeroxFoxxo/MQReawakened#architecture).
+<div align="center">
+    <h1>
+        <img width="70%" src="LogoBanner.png?raw=true" style="border-radius: 50%;" align="center">
+        <br>
+    </h1>
+    <h3>An Electron app that allows you to easily join MQ servers!</h3>
+    <p>
+        <a href="https://github.com/FeroxFoxxo/MQClient/blob/master/LICENSE.md">
+            <img alt="License" src="https://img.shields.io/github/license/feroxfoxxo/mqclient?label=License&style=for-the-badge">
+        </a>
+        <a href="https://discord.gg/sA4kmsxC7N">
+            <img alt="Wiki" src="https://img.shields.io/badge/chat-on%20discord-7289da.svg?logo=discord&style=for-the-badge">
+        </a>
+        <a href="https://github.com/FeroxFoxxo/MQReawakened">
+            <img alt="Stars" src="https://img.shields.io/github/stars/feroxfoxxo/MQReawakened?color=gold&style=for-the-badge">
+        </a>
+    </p>
+    <h4>For an overview of how the game client worked originally, please see         <a href="https://github.com/FeroxFoxxo/MQReawakened#architecture">
+this section in the MQReawakened README</a>.</h4>
+    <h1></h1>
+</div>
 
 ## Disclaimer
 
