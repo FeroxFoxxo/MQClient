@@ -1,16 +1,16 @@
-# OpenFusionClient
+# MQClient
 
-[![Current Release](https://img.shields.io/github/v/release/OpenFusionProject/OpenFusionClient?include_prereleases)](https://github.com/OpenFusionProject/OpenFusionClient/releases/latest) [![Discord](https://img.shields.io/badge/chat-on%20discord-7289da.svg?logo=discord)](https://discord.gg/DYavckB)[![License](https://img.shields.io/github/license/OpenFusionProject/OpenFusionClient)](https://github.com/OpenFusionProject/OpenFusionClient/blob/master/LICENSE.md)
+[![Discord](https://img.shields.io/badge/chat-on%20discord-7289da.svg?logo=discord)](https://discord.gg/sA4kmsxC7N)[![License](https://img.shields.io/github/license/FeroxFoxxo/MQClient)](https://github.com/FeroxFoxxo/MQClient/blob/master/LICENSE.md)
 
-An Electron app that allows you to easily join FusionFall servers.
+An Electron app that allows you to easily join MQ servers.
 
-It automatically installs FF's custom build of Unity Web Player, manages text files such as `assetInfo.php`/`loginInfo.php`, and embeds the game, all in a few clicks!
+It automatically embeds the game, all in a few clicks!
 
-For an overview of how the game client worked originally, please see [this section in the OpenFusion README](https://github.com/OpenFusionProject/OpenFusion#architecture).
+For an overview of how the game client worked originally, please see [this section in the MQReawakened README](https://github.com/FeroxFoxxo/MQReawakened#architecture).
 
 ## Disclaimer
 
-This repository does not contain any code from the actual FusionFall game client. **Think of it more as a launcher:** it abstracts away having to use a NPAPI plugin capable web browser, along with having to host a HTTP server for it to connect to.
+This repository does not contain any code from the actual MQ game client. **Think of it more as a launcher:** it abstracts away having to use a NPAPI plugin capable web browser, along with having to host a HTTP server for it to connect to.
 
 In addition, if you are interested in contributing: do note that **this project likely cannot utilize more modern Javascript techniques**. In order to use NPAPI plugins, a very old version of Electron was needed (0.31.0). This limits the project to only a portion of ES5 in non-strict mode, and a reduced subset of Node/Electron APIs.
 
@@ -19,11 +19,11 @@ In addition, if you are interested in contributing: do note that **this project 
 Provided that you have npm installed, clone the repository, then run install like so:
 
 ```
-git clone https://github.com/OpenFusionProject/OpenFusionClient.git
+git clone https://github.com/FeroxFoxxo/MQClient.git
 npm install
 ```
 
-After that has completed you can then test OpenFusionClient:
+After that has completed you can then test MQClient:
 
 ```
 npm run start
