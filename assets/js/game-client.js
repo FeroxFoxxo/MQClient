@@ -57,8 +57,8 @@ function launchGame() {
         "undefined/UnityWebPlayer.cab#version=2,0,0,0"
     );
     object.setAttribute("id", "unityObject");
-    object.setAttribute("width", "1264");
-    object.setAttribute("height", "661");
+    object.setAttribute("width", "800");
+    object.setAttribute("height", "600");
 
     var embed = document.createElement("embed");
     embed.setAttribute("type", "application/vnd.ffuwp");
@@ -84,6 +84,6 @@ function launchGame() {
     var div = document.getElementById("client");
     object.appendChild(embed);
     div.appendChild(object);
-    document.title = "OpenFusion";
+    document.title = "MQClient";
     onResize();
 }

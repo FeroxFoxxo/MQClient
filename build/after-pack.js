@@ -1,6 +1,6 @@
 const fs = require('fs');
 const defaultDir = './dist/win-ia32-unpacked/resources/default_app'
-const exeFile = './dist/win-ia32-unpacked/OpenFusionClient.exe'
+const exeFile = './dist/win-ia32-unpacked/MqClient.exe'
 
 exports.default = function() {
   // remove leftover files from default electron app

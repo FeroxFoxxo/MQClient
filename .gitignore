@@ -5,7 +5,6 @@ locales/
 rankurl.txt
 icudtl.dat
 version
-resources/app/files/rankurl.txt
 node_modules/
 dist/
 UnityBugReporter.exe

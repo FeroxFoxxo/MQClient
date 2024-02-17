@@ -74,8 +74,9 @@ app.on("ready", function () {
     }
     // Create the browser window.
     mainWindow = new BrowserWindow({
-        width: 1280,
-        height: 720,
+        width: 800,
+        height: 600,
+        icon: __dirname + '/build/icon.ico',
         show: false,
         "web-preferences": {
             plugins: true,
@@ -156,7 +157,7 @@ function showMainWindow() {
                 );
                 break;
             case "http://forums.fusionfall.com/":
-                require("shell").openExternal("https://discord.gg/DYavckB");
+                require("shell").openExternal("https://discord.gg/sA4kmsxC7N");
                 break;
             default:
                 mainWindow.loadUrl(url);
