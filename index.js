@@ -18,10 +18,12 @@ process.env["UNITY_HOME_DIR"] = unityHomeDir;
 process.env["UNITY_DISABLE_PLUGIN_UPDATES"] = "yes";
 
 app.commandLine.appendSwitch("enable-npapi");
+
 app.commandLine.appendSwitch(
     "load-plugin",
-    path.join(unityHomeDir, "/loader/npUnity3D32.dll")
+    path.join(unityHomeDir, "/loader-x64/npUnity3D64.dll")
 );
+
 app.commandLine.appendSwitch("no-proxy-server");
 
 var userData = app.getPath("userData");
@@ -42,7 +44,7 @@ function initialSetup(firstTime) {
         fs.copySync(
             path.join(__dirname, "/defaults/servers.json"),
             serversPath
-        );
+        );        
     }
 
     // Copy default versions and config
@@ -67,8 +69,8 @@ app.on("ready", function () {
     zipCheck = app.getPath("exe").includes(os.tmpdir());
     if (zipCheck) {
         var errorMessage =
-            "It has been detected that OpenFusionClient is running from the TEMP folder.\n\n" +
-            "Please extract the entire Client folder to a location of your choice before starting OpenFusionClient.";
+            "It has been detected that MQClient is running from the TEMP folder.\n\n" +
+            "Please extract the entire Client folder to a location of your choice before starting MQClient.";
         dialog.showErrorBox("Error!", errorMessage);
         return;
     }
@@ -82,7 +84,8 @@ app.on("ready", function () {
             plugins: true,
         },
     });
-    mainWindow.setMinimumSize(640, 480);
+
+    mainWindow.setMinimumSize(800, 600);
 
     // Check for first run
     try {

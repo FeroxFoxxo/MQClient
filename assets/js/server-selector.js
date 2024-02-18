@@ -54,7 +54,7 @@ function addServer() {
     server["uuid"] = uuidv4();
     server["description"] =
         $("#addserver-descinput").val().length == 0
-            ? "My OpenFusion Server"
+            ? "My MQ Server"
             : $("#addserver-descinput").val();
     server["ip"] =
         $("#addserver-ipinput").val().length == 0
@@ -163,7 +163,7 @@ function performCacheSwap(newVersion) {
         userData,
         "/../../LocalLow/Unity/Web Player/Cache"
     );
-    var currentCache = path.join(cacheRoot, "FusionFall");
+    var currentCache = path.join(cacheRoot, "MQ");
     var newCache = path.join(cacheRoot, newVersion);
     var record = path.join(userData, ".lastver");
 
@@ -199,7 +199,7 @@ function performCacheSwap(newVersion) {
     remotefs.writeFileSync(record, newVersion);
     
     if (remotefs.existsSync(newCache) && !skip) {
-        // Rename saved cache to FusionFall
+        // Rename saved cache to MQ
         remotefs.renameSync(newCache, currentCache);
         console.log("Current cache swapped to " + newVersion);
     }
@@ -288,7 +288,7 @@ function setGameInfo(serverUUID) {
 }
 
 function prepConnection(address, port) {
-    var full = address + ":" + port;
+var full = address + ":" + port;
     console.log("Will connect to " + full);
     remotefs.writeFileSync(path.join(__dirname, "loginInfo.php"), full);
     launchGame();

@@ -48,27 +48,30 @@ function launchGame() {
     document.body.style.overflow = "hidden";
 
     var object = document.createElement("object");
-    object.setAttribute(
+object.setAttribute(
         "classid",
         "clsid:444785F1-DE89-4295-863A-D46C3A781394"
     );
     object.setAttribute(
         "codebase",
-        "undefined/UnityWebPlayer.cab#version=2,0,0,0"
+        "undefined/UnityWebPlayer.cab#version=3,0,0,0"
     );
     object.setAttribute("id", "unityObject");
     object.setAttribute("width", "800");
     object.setAttribute("height", "600");
 
     var embed = document.createElement("embed");
+
     embed.setAttribute("type", "application/vnd.ffuwp");
+
     embed.setAttribute(
         "pluginspage",
-        "http://www.unity3d.com/unity-web-player-2.x"
+        "http://www.unity3d.com/unity-web-player-3.x"
     );
+
     embed.setAttribute("id", "unityEmbed");
-    embed.setAttribute("width", "1280");
-    embed.setAttribute("height", "680");
+    embed.setAttribute("width", "800");
+    embed.setAttribute("height", "600");
     embed.setAttribute("src", window.assetUrl + "main.unity3d");
     embed.setAttribute("bordercolor", "000000");
     embed.setAttribute("backgroundcolor", "000000");

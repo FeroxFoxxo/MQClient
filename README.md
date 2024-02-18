@@ -9,7 +9,7 @@
             <img alt="License" src="https://img.shields.io/github/license/feroxfoxxo/mqclient?label=License&style=for-the-badge">
         </a>
         <a href="https://discord.gg/sA4kmsxC7N">
-            <img alt="Wiki" src="https://img.shields.io/badge/chat-on%20discord-7289da.svg?logo=discord&style=for-the-badge">
+            <img alt="Wiki" src="https://img.shields.io/badge/chat-on%20discord.svg?logo=discord&style=for-the-badge">
         </a>
         <a href="https://github.com/FeroxFoxxo/MQReawakened">
             <img alt="Stars" src="https://img.shields.io/github/stars/feroxfoxxo/MQReawakened?color=gold&style=for-the-badge">
