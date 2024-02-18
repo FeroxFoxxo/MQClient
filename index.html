@@ -10,8 +10,7 @@
         <title>MQ: Server Selector</title>
         <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
         <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css" />
-        <link rel="stylesheet" href="assets/css/openfusion.css" />
-        <link rel="stylesheet" href="assets/css/styles.css" />
+        <link rel="stylesheet" href="assets/css/mq.css" />
     </head>
 
     <body onresize="onResize()">
@@ -22,11 +21,11 @@
                         <img
                             class="img-fluid"
                             id="of-logo"
-                            src="assets/img/of-3.png"
+                            src="assets/img/mq-logo.png"
                             width="256"
                         />
                         <p id="of-intro-text">
-                            Welcome to MQ.<br />Select a server from the
+                            Welcome to MQReawaken.<br />Select a server from the
                             list below to get started.
                         </p>
                     </div>
@@ -149,7 +148,7 @@
                                 APP_VERSION_NUMBER
                             </p>
                             <p>
-                                ©2020-2023 MQReawakened Contributors<br />MQReawaken
+                                ©2024 MQReawakened Contributors<br />©2020-2023 OpenFusion Contributors<br />MQReawaken
                                 is licensed under MIT.<br />
                             </p>
                             <a
@@ -234,7 +233,7 @@
                                     class="form-control form-row w-75"
                                     type="text"
                                     id="addserver-descinput"
-                                    placeholder="My MQReawaken Server"
+                                    placeholder="My MQ Server"
                                     required=""
                                     minlength="1"
                                     maxlength="70"
@@ -244,7 +243,7 @@
                                     class="form-control form-row w-75"
                                     type="text"
                                     id="addserver-ipinput"
-                                    placeholder="127.0.0.1:23000"
+                                    placeholder="http://localhost/"
                                     required=""
                                     pattern="^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]):[0-9]+$"
                                 /><label for="addserver-versionselect"
@@ -306,7 +305,7 @@
                                     class="form-control form-row w-75"
                                     type="text"
                                     id="editserver-descinput"
-                                    placeholder="My MQReawaken Server"
+                                    placeholder="My MQ Server"
                                     required=""
                                     minlength="1"
                                     maxlength="70"
@@ -316,7 +315,7 @@
                                     class="form-control form-row w-75"
                                     type="text"
                                     id="editserver-ipinput"
-                                    placeholder="127.0.0.1:23000"
+                                    placeholder="http://localhost/"
                                     required=""
                                     pattern="^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]):[0-9]+$"
                                 /><label for="editserver-versionselect"
@@ -446,7 +445,8 @@
             <div id="of-versionnumberdiv">
                 <a
                     id="of-versionnumber"
-                    class="text-monospace text-secondary"
+                    class="text-monospace"
+                    style="color:#eee"
                     href="#of-aboutmodal"
                     data-toggle="modal"
                     data-target="#of-aboutmodal"

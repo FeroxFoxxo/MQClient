@@ -6,22 +6,22 @@
 }
 
 #server-table > .table-striped thead th {
-    background-color: #34476e;
+    background-color: #DD7D1E;
 }
 
 #server-table > .table-striped tbody tr:nth-of-type(odd) {
-    background-color: #34476e;
+    background-color: #DD7D1E;
 }
 
 #server-listing-placeholder > td {
-    background-color: #24314d;
+    background-color: #A2B229;
     user-select: none;
     -webkit-user-select: none;
 }
 
 #server-table > .table-striped tbody tr:nth-of-type(even),
 th {
-    background-color: #24314d;
+    background-color: #A2B229;
 }
 
 #server-table {
@@ -30,8 +30,8 @@ th {
 }
 
 #of-intro-text {
-    text-shadow: 1px 1px 8px #4349c4;
-    color: #4a76b7;
+    text-shadow: 1px 1px 8px #314601;
+    color: #ffffff;
     font-size: 18px;
 }
 
@@ -40,10 +40,10 @@ img {
 }
 
 :root {
-    --gray-dark: #343a40;
-    --primary: #6699ff;
-    --secondary: #384e7a;
-    --dark: #384e7a;
+    --gray-dark: #0A370E;
+    --primary: #0099ff;
+    --secondary: #ffffff;
+    --dark: #ffffff;
 }
 
 body {
@@ -53,7 +53,7 @@ body {
     padding: 0;
     clear: both;
     user-select: none;
-    background-color: #000;
+    background-color: #314601;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
         "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
         "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
@@ -66,18 +66,15 @@ body {
 }
 
 .btn-primary {
-    background-image: url("../../assets/img/btn-primary-bg.png");
-    background-repeat: repeat;
+    background-color: #5555ff;
 }
 
 .btn-success {
-    background-image: url("../../assets/img/btn-success-bg.png");
-    background-repeat: repeat;
+    background-color: #33aa33;
 }
 
 .btn-danger {
-    background-image: url("../../assets/img/btn-danger-bg.png");
-    background-repeat: repeat;
+    background-color: #bb2222;
 }
 
 #of-aboutmodal > .modal-dialog > .modal-content {
@@ -140,6 +137,6 @@ button > i {
     height: 100%;
     margin: 0;
     padding: 0;
-    background: #000;
+    background: #314601;
     clear: both;
 }

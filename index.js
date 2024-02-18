@@ -6,6 +6,7 @@ var os = require("os");
 var path = require("path");
 
 var BrowserWindow = require("browser-window");
+
 var mainWindow = null;
 
 var unityHomeDir = path.join(__dirname, "../../WebPlayer");
@@ -19,10 +20,14 @@ process.env["UNITY_DISABLE_PLUGIN_UPDATES"] = "yes";
 
 app.commandLine.appendSwitch("enable-npapi");
 
+var plugin = path.join(unityHomeDir, "/loader-x64/npUnity3D64.dll");
+
 app.commandLine.appendSwitch(
     "load-plugin",
-    path.join(unityHomeDir, "/loader-x64/npUnity3D64.dll")
+    plugin
 );
+
+console.log("Plugin url: " + plugin);
 
 app.commandLine.appendSwitch("no-proxy-server");
 
@@ -33,7 +38,6 @@ var versionsPath = path.join(userData, "versions.json");
 
 function initialSetup(firstTime) {
     if (!firstTime) {
-        // Migration from pre-1.4
         // Back everything up, just in case
         fs.copySync(configPath, configPath + ".bak");
         fs.copySync(serversPath, serversPath + ".bak");
@@ -85,7 +89,7 @@ app.on("ready", function () {
         },
     });
 
-    mainWindow.setMinimumSize(800, 600);
+    mainWindow.setMinimumSize(500, 300);
 
     // Check for first run
     try {
@@ -95,7 +99,7 @@ app.on("ready", function () {
         } else {
             var config = fs.readJsonSync(configPath);
             if (!config["last-version-initialized"]) {
-                console.log("Pre-1.4 config detected. Running migration.");
+                console.log("Pre-1.0 config detected. Running migration.");
                 initialSetup(false);
             } else {
                 showMainWindow();
@@ -141,29 +145,5 @@ function showMainWindow() {
         dialog.showErrorBox("Error!", errorMessage);
         mainWindow.destroy();
         app.quit();
-    });
-
-    mainWindow.webContents.on("will-navigate", function (event, url) {
-        event.preventDefault();
-        switch (url) {
-            case "https://audience.fusionfall.com/ff/regWizard.do?_flowId=fusionfall-registration-flow":
-                var errorMessage =
-                    "The register page is currently unimplemented.\n\n" +
-                    'You can still create an account: type your desired username and password into the provided boxes and click "Log In". ' +
-                    "Your account will then be automatically created on the server. \nBe sure to remember these details!";
-                dialog.showErrorBox("Sorry!", errorMessage);
-                break;
-            case "https://audience.fusionfall.com/ff/login.do":
-                dialog.showErrorBox(
-                    "Sorry!",
-                    "Account management is not available."
-                );
-                break;
-            case "http://forums.fusionfall.com/":
-                require("shell").openExternal("https://discord.gg/sA4kmsxC7N");
-                break;
-            default:
-                mainWindow.loadUrl(url);
-        }
     });
 }

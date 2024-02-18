@@ -3,16 +3,14 @@
         {
             "uuid": "d9773558-6ddf-4d00-8803-d830a22a842b",
             "description": "MQ 2012",
-            "ip": "play.dexlabs.systems:23000",
-            "version": "1.6577",
-            "endpoint": "https://api.dexlabs.systems/"
+            "ip": "https://2012.mqreawaken.ovh/",
+            "version": "1.6577"
         },
         {
             "uuid": "b84f6859-f500-41f2-bdfa-8e3746639ee9",
             "description": "MQ 2013",
-            "ip": "play.dexlabs.systems:24000",
-            "version": "4.482",
-            "endpoint": "https://api.dexlabs.systems/academy/"
+            "ip": "https://2013.mqreawaken.ovh/",
+            "version": "4.482"
         }
     ],
     "favorites": []

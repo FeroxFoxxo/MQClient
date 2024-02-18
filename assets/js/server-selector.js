@@ -1,6 +1,5 @@
 var remote = require("remote");
 var remotefs = remote.require("fs-extra");
-var dns = remote.require("dns");
 var path = remote.require("path");
 
 var userData = remote.require("app").getPath("userData");
@@ -58,7 +57,7 @@ function addServer() {
             : $("#addserver-descinput").val();
     server["ip"] =
         $("#addserver-ipinput").val().length == 0
-            ? "127.0.0.1:23000"
+            ? "http://localhost/"
             : $("#addserver-ipinput").val();
     server["version"] = $("#addserver-versionselect option:selected").text();
     //server['endpoint'] =
@@ -227,70 +226,8 @@ function setGameInfo(serverUUID) {
 
     window.assetUrl = gameVersion.url; // game-client.js needs to access this
 
-    remotefs.writeFileSync(path.join(__dirname, "assetInfo.php"), assetUrl);
-    if (result.hasOwnProperty("endpoint")) {
-        var httpEndpoint = result.endpoint.replace("https://", "http://");
-        remotefs.writeFileSync(
-            path.join(__dirname, "rankurl.txt"),
-            httpEndpoint + "getranks"
-        );
-        // Write these out too
-        remotefs.writeFileSync(
-            path.join(__dirname, "sponsor.php"),
-            httpEndpoint + "upsell/sponsor.png"
-        );
-        remotefs.writeFileSync(
-            path.join(__dirname, "images.php"),
-            httpEndpoint + "upsell/"
-        );
-    } else {
-        // Remove/default the endpoint related stuff, this server won't be using it
-        if (remotefs.existsSync(path.join(__dirname, "rankurl.txt"))) {
-            remotefs.unlinkSync(path.join(__dirname, "rankurl.txt"));
-            remotefs.writeFileSync(
-                path.join(__dirname, "sponsor.php"),
-                "assets/img/welcome.png"
-            );
-            remotefs.writeFileSync(
-                path.join(__dirname, "images.php"),
-                "assets/img/"
-            );
-        }
-    }
+    console.log("User data path: " + userData);
 
-    // Server address parsing
-    var address;
-    var port;
-    var sepPos = result.ip.indexOf(":");
-    if (sepPos > -1) {
-        address = result.ip.substr(0, sepPos);
-        port = result.ip.substr(sepPos + 1);
-    } else {
-        address = result.ip;
-        port = 23000; // default
-    }
-
-    // DNS resolution. there is no synchronous version for some stupid reason
-    if (!address.match(/^[0-9.]+$/))
-        dns.lookup(address, (family = 4), function (err, resolvedAddress) {
-            if (!err) {
-                console.log("Resolved " + address + " to " + resolvedAddress);
-                address = resolvedAddress;
-            } else {
-                console.log("Err: " + err.code);
-            }
-            prepConnection(address, port);
-        });
-    else {
-        console.log(address + " is an IP; skipping DNS lookup");
-        prepConnection(address, port);
-    }
-}
-
-function prepConnection(address, port) {
-var full = address + ":" + port;
-    console.log("Will connect to " + full);
-    remotefs.writeFileSync(path.join(__dirname, "loginInfo.php"), full);
     launchGame();
 }
 
