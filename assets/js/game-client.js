@@ -24,7 +24,7 @@ function launchGame() {
 
     var embed = document.createElement("embed");
 
-    embed.setAttribute("type", "application/vnd.ffuwp");
+    embed.setAttribute("type", "application/vnd.unity");
 
     embed.setAttribute(
         "pluginspage",
@@ -42,7 +42,7 @@ function launchGame() {
     embed.setAttribute("backgroundcolor", "000000");
     embed.setAttribute("disableContextMenu", true);
     embed.setAttribute("textcolor", "ccffff");
-    embed.setAttribute("logoimage", "assets/img/unity-dexlabs.png");
+    embed.setAttribute("logoimage", "assets/img/unity-mqr.png");
     embed.setAttribute("progressbarimage", "assets/img/unity-loadingbar.png");
     embed.setAttribute(
         "progressframeimage",

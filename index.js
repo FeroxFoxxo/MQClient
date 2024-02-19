@@ -8,6 +8,7 @@ var path = require("path");
 var BrowserWindow = require("browser-window");
 
 var mainWindow = null;
+var hasExecuted = false;
 
 var unityHomeDir = path.join(__dirname, "../../WebPlayer");
 // If running in non-packaged / development mode, this dir will be slightly different
@@ -20,7 +21,7 @@ process.env["UNITY_DISABLE_PLUGIN_UPDATES"] = "yes";
 
 app.commandLine.appendSwitch("enable-npapi");
 
-var plugin = path.join(unityHomeDir, "/loader-x64/npUnity3D64.dll");
+var plugin = path.join(unityHomeDir, "/loader/npUnity3D32.dll");
 
 app.commandLine.appendSwitch(
     "load-plugin",
@@ -89,7 +90,7 @@ app.on("ready", function () {
         },
     });
 
-    mainWindow.setMinimumSize(500, 300);
+    mainWindow.setMinimumSize(800, 600);
 
     // Check for first run
     try {
@@ -130,12 +131,17 @@ function showMainWindow() {
 
     // Reduces white flash when opening the program
     mainWindow.webContents.on("did-finish-load", function () {
-        mainWindow.webContents.executeJavaScript("setAppVersionText();");
+        if (!hasExecuted)
+        {
+            mainWindow.webContents.executeJavaScript("setAppVersionText();");
+            // everything's loaded, tell the renderer process to do its thing
+            mainWindow.webContents.executeJavaScript("loadConfig();");
+            mainWindow.webContents.executeJavaScript("loadGameVersions();");
+            mainWindow.webContents.executeJavaScript("loadServerList();");
+
+            hasExecuted = true;
+        }
         mainWindow.show();
-        // everything's loaded, tell the renderer process to do its thing
-        mainWindow.webContents.executeJavaScript("loadConfig();");
-        mainWindow.webContents.executeJavaScript("loadGameVersions();");
-        mainWindow.webContents.executeJavaScript("loadServerList();");
     });
 
     mainWindow.webContents.on("plugin-crashed", function () {

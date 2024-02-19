@@ -78,40 +78,40 @@ body {
 }
 
 #of-aboutmodal > .modal-dialog > .modal-content {
-    background-color: #093363;
-    border-color: #6699ff;
+    background-color: #0D4A4C;
+    border-color: #15696F;
 }
 
 #of-addservermodal > .modal-dialog > .modal-content {
-    background-color: #093363;
-    border-color: #6699ff;
+    background-color: #0D4A4C;
+    border-color: #15696F;
 }
 
 #of-editservermodal > .modal-dialog > .modal-content {
-    background-color: #093363;
-    border-color: #6699ff;
+    background-color: #0D4A4C;
+    border-color: #15696F;
 }
 
 #of-deleteservermodal > .modal-dialog > .modal-content {
-    background-color: #093363;
-    border-color: #6699ff;
+    background-color: #0D4A4C;
+    border-color: #15696F;
 }
 
 #of-restoreserversmodal > .modal-dialog > .modal-content {
-    background-color: #093363;
-    border-color: #6699ff;
+    background-color: #0D4A4C;
+    border-color: #15696F;
 }
 
 .form-control,
 .form-control:focus {
-    border-color: #0099ff;
-    background-color: #000;
+    border-color: #15696F;
+    background-color: #222;
     color: #fff;
 }
 
 select {
-    border-color: #0099ff;
-    background-color: #000;
+    border-color: #15696F;
+    background-color: #222;
     color: #fff;
 }
 
@@ -137,6 +137,12 @@ button > i {
     height: 100%;
     margin: 0;
     padding: 0;
-    background: #314601;
     clear: both;
+}
+
+.centered {
+    margin: 0;
+    top: 40%;
+    -ms-transform: translateY(40%);
+    transform: translateY(40%);  
 }
