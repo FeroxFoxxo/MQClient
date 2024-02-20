@@ -1,16 +1,22 @@
 {
     "servers": [
         {
-            "uuid": "d9773558-6ddf-4d00-8803-d830a22a842b",
-            "description": "MQ 2012",
-            "ip": "https://2012.mqreawaken.ovh/",
-            "version": "4.89"
+            "uuid": "0a71ebf1-5467-473b-90cf-24dba4349441",
+            "description": "MQR 2012",
+            "ip": "https://2012.mqreawaken.ovh",
+            "version": "4.482"
         },
         {
-            "uuid": "b84f6859-f500-41f2-bdfa-8e3746639ee9",
-            "description": "MQ 2013",
-            "ip": "https://2013.mqreawaken.ovh/",
+            "uuid": "03a2b3e5-4ba6-46e1-a5d0-56877a483923",
+            "description": "MQR 2013",
+            "ip": "https://2013.mqreawaken.ovh",
             "version": "1.6577"
+        },
+        {
+            "uuid": "745bdbc2-b70f-40f7-8a5a-6bac3b3fd6a9",
+            "description": "Local MQ Server",
+            "ip": "http://localhost",
+            "version": "4.482"
         }
     ],
     "favorites": []

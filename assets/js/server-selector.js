@@ -157,53 +157,6 @@ function loadServerList() {
     }
 }
 
-function performCacheSwap(newVersion) {
-    var cacheRoot = path.join(
-        userData,
-        "/../../LocalLow/Unity/Web Player/Cache"
-    );
-    var currentCache = path.join(cacheRoot, "MQ");
-    var newCache = path.join(cacheRoot, newVersion);
-    var record = path.join(userData, ".lastver");
-
-    // If cache renaming would result in a no-op (ex. launching the same version
-    // two times), then skip it. This avoids permissions errors with multiple clients
-    // (file/folder is already open in another process)
-    var skip = false;
-
-    if (remotefs.existsSync(currentCache)) {
-        // Cache already exists, find out what version it belongs to
-        if (remotefs.existsSync(record)) {
-            var lastVersion = remotefs.readFileSync(record, (encoding = "utf8"));
-            if (lastVersion != newVersion) {
-                // Remove the directory we're trying to store the
-                // existing cache to if it already exists for whatever
-                // reason, as it would cause an EPERM error otherwise.
-                // This is a no-op if the directory doesn't exist
-                remotefs.removeSync(path.join(cacheRoot, lastVersion));
-                // Store old cache to named directory
-                remotefs.renameSync(
-                    currentCache,
-                    path.join(cacheRoot, lastVersion)
-                );
-            } else {
-                console.log("Cached version unchanged, skipping rename");
-                skip = true;
-            }
-            console.log("Current cache is " + lastVersion);
-        }
-    }
-
-    // Make note of what version we are launching for next launch
-    remotefs.writeFileSync(record, newVersion);
-    
-    if (remotefs.existsSync(newCache) && !skip) {
-        // Rename saved cache to MQ
-        remotefs.renameSync(newCache, currentCache);
-        console.log("Current cache swapped to " + newVersion);
-    }
-}
-
 // For writing loginInfo.php, assetInfo.php, etc.
 function setGameInfo(serverUUID) {
     var result = serverArray.filter(function (obj) {
@@ -212,19 +165,10 @@ function setGameInfo(serverUUID) {
     var gameVersion = versionArray.filter(function (obj) {
         return obj.name === result.version;
     })[0];
-
-    // If cache swapping property exists AND is `true`, run cache swapping logic
-    if (config["cache-swapping"]) {
-        try {
-            performCacheSwap(gameVersion.name);
-        } catch (ex) {
-            console.log(
-                "Error when swapping cache, it may get overwritten:\n" + ex
-            );
-        }
-    }
-
-    window.assetUrl = gameVersion.url; // game-client.js needs to access this
+    
+    // game-client.js needs to access this
+    window.ipAddress = result.ip; 
+    window.version = gameVersion.url;
 
     console.log("User data path: " + userData);
 

@@ -2,31 +2,31 @@
     "versions": [
         {
             "name": "4.89",
-            "url": "https://mqreawaken.ovh/Game/4.89/"
+            "url": "Game/MQServer.4.89.unity3d"
         },
         {
             "name": "4.187",
-            "url": "https://mqreawaken.ovh/Game/4.187/"
+            "url": "Game/MQServer.4.187.unity3d"
         },
         {
             "name": "4.287",
-            "url": "https://mqreawaken.ovh/Game/4.287/"
+            "url": "Game/MQServer.4.287.unity3d"
         },
         {
             "name": "4.310",
-            "url": "https://mqreawaken.ovh/Game/4.310/"
+            "url": "Game/MQServer.4.310.unity3d"
         },
         {
             "name": "4.342",
-            "url": "https://mqreawaken.ovh/Game/4.342/"
+            "url": "Game/MQServer.4.342.unity3d"
         },
         {
             "name": "4.482",
-            "url": "https://mqreawaken.ovh/Game/4.482/"
+            "url": "Game/MQServer.4.482.unity3d"
         },
         {
             "name": "1.6577",
-            "url": "https://mqreawaken.ovh/Game/1.6577/"
+            "url": "Game/MQServer.1.6577.unity3d"
         }
     ]
 }
