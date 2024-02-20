@@ -1,10 +1,6 @@
 {
     "versions": [
         {
-            "name": "1.6577",
-            "url": "https://mqreawaken.ovh/Game/1.6577/"
-        },
-        {
             "name": "4.89",
             "url": "https://mqreawaken.ovh/Game/4.89/"
         },
@@ -27,6 +23,10 @@
         {
             "name": "4.482",
             "url": "https://mqreawaken.ovh/Game/4.482/"
+        },
+        {
+            "name": "1.6577",
+            "url": "https://mqreawaken.ovh/Game/1.6577/"
         }
     ]
 }
