@@ -15,9 +15,8 @@ function onResize() {
 projName += "eyqu";
 cash += "kca";
 
-function GetUnity ()
-{
-    console.log("Accessing GetUnity();")
+function GetUnity() {
+    console.log("Accessing GetUnity();");
     return document.getElementById("unityEmbed");
 }
 
@@ -34,75 +33,82 @@ function launchGame() {
 
     var url = window.ipAddress;
     query_string = "";
-    
+
     var properties = [
-    
         { key: "login.auto", value: "true" },
-    
+
         { key: "login.host", value: window.host },
         { key: "login.user", value: window.username },
         { key: "login.sid", value: window.password },
-    
+
         { key: "asset.log", value: "true" },
         { key: "asset.disableversioning", value: "true" },
-    
+
         // Asset Types / Bundles -> Levels // NavMesh // XML
-        
+
         { key: "asset.bundle", value: url + "/Client/Bundles" },
         { key: "asset.audio", value: url + "/Client/Audio" },
-    
+
         { key: "logout.url", value: url + "/Logout" },
-        
+
         { key: "mysql.datasource", value: "data" },
         { key: "mysql.username", value: "username" },
         { key: "mysql.password", value: "password" },
         { key: "mysql.database", value: "database" },
-        
-        { key:"tools.urlbase", value: url + "/Tools" },
-        { key:"branch.name", value: "Mainline" },
-    
+
+        { key: "tools.urlbase", value: url + "/Tools" },
+        { key: "branch.name", value: "Mainline" },
+
         { key: projName + ".unity.cache.domain", value: url + "/Cache" },
         { key: projName + ".unity.cache.license", value: "UNKNOWN" },
         { key: projName + ".unity.cache.size", value: "0" },
         { key: projName + ".unity.cache.expiration", value: "0" },
-    
+
         { key: projName + ".unity.downloadretrydelay", value: "1" },
         { key: projName + ".unity.downloadretriesmax", value: "10" },
         { key: projName + ".unity.enablecacheworkaround", value: "false" },
         { key: projName + ".unity.enableclockdriftprediction", value: "true" },
         { key: projName + ".unity.networktimeout", value: "120" },
-    
+
         { key: projName + ".unity.screenstatus.fullscreen", value: "true" },
-        
+
         { key: projName + ".unity.url." + cash, value: url + "/Cash" },
         { key: projName + ".unity.url.membership", value: url + "/Membership" },
-    
+
         { key: projName + ".unity.url.crisp.host", value: url + "/Chat/" },
-        { key: projName + ".unity.url.crisp.app", value: "CrispAutoSuggestProxy" },
-        { key: projName + ".unity.url.crisp.service.whitelist", value: "WordList?group=" },
-        { key: projName + ".unity.url.crisp.service.phrasecheck", value: "PhraseCheck" },
-    
+        {
+            key: projName + ".unity.url.crisp.app",
+            value: "CrispAutoSuggestProxy",
+        },
+        {
+            key: projName + ".unity.url.crisp.service.whitelist",
+            value: "WordList?group=",
+        },
+        {
+            key: projName + ".unity.url.crisp.service.phrasecheck",
+            value: "PhraseCheck",
+        },
+
         { key: projName + ".jabber.port", value: "5222" },
         { key: projName + ".jabber.crossdomain", value: "5229" },
         { key: projName + ".jabber.domain", value: url + "/Jabber" },
-        
+
         { key: "game.cacheversion", value: "0" },
         { key: "game.url", value: url + "/Game" },
-    
+
         { key: "chat.disable", value: "false" },
-    
+
         { key: "project.name", value: "MQReawaken" },
-    
+
         { key: "simulate.webplayer", value: "true" },
-        { key: "simulate.sharder", value: "true" }
+        { key: "simulate.sharder", value: "true" },
     ];
-    
-    for(var i = 0; i < properties.length; i++)
-    {
+
+    for (var i = 0; i < properties.length; i++) {
         query_string += "&" + properties[i].key + "&" + properties[i].value;
     }
-    
-    console.log("Query String: " + query_string);    
+
+    console.log("Query String: " + query_string);
 
     var object = document.createElement("object");
 

@@ -165,9 +165,9 @@ function setGameInfo(serverUUID) {
     var gameVersion = versionArray.filter(function (obj) {
         return obj.name === result.version;
     })[0];
-    
+
     // game-client.js needs to access this
-    window.ipAddress = result.ip; 
+    window.ipAddress = result.ip;
     window.version = gameVersion.url;
 
     console.log("User data path: " + userData);
@@ -205,16 +205,23 @@ function login() {
 
     $.ajax({
         url: ajaxUrl,
-        type: 'GET'
-    }).done(function(response) {
+        type: "GET",
+    }).done(function (response) {
         window.host = response;
 
         setLoginInformation();
 
         window.username = $("#addlogin-usernameinput").val();
         window.password = $("#addlogin-passwordinput").val();
-        
-        console.log("Host: " + window.host + ", username: " + window.username + ", password: " + window.password);
+
+        console.log(
+            "Host: " +
+                window.host +
+                ", username: " +
+                window.username +
+                ", password: " +
+                window.password
+        );
 
         launchConnection();
     });
@@ -238,7 +245,7 @@ function loadLoginInformation() {
 
     var username = "";
     var password = "";
-    
+
     $.each(jsonToModify["servers"], function (key, value) {
         if (value["uuid"] == getSelectedServer()) {
             username = value["username"];
@@ -248,7 +255,7 @@ function loadLoginInformation() {
 
     console.log("Setting username to " + username);
     console.log("Setting password to " + password);
-    
+
     $("#addlogin-usernameinput").val(username);
     $("#addlogin-passwordinput").val(password);
 }
@@ -267,7 +274,7 @@ function deselectServer() {
     $(".server-listing-entry").removeClass("bg-primary");
 }
 
-function createAccount(){
+function createAccount() {
     var accountPage = window.ipAddress + "/en/Signup";
     console.log("Account page redirected: " + accountPage);
 

@@ -23,10 +23,7 @@ app.commandLine.appendSwitch("enable-npapi");
 
 var plugin = path.join(unityHomeDir, "/loader/npUnity3D32.dll");
 
-app.commandLine.appendSwitch(
-    "load-plugin",
-    plugin
-);
+app.commandLine.appendSwitch("load-plugin", plugin);
 
 console.log("Plugin url: " + plugin);
 
@@ -49,7 +46,7 @@ function initialSetup(firstTime) {
         fs.copySync(
             path.join(__dirname, "/defaults/servers.json"),
             serversPath
-        );        
+        );
     }
 
     // Copy default versions and config
@@ -83,7 +80,7 @@ app.on("ready", function () {
     mainWindow = new BrowserWindow({
         width: 800,
         height: 600,
-        icon: __dirname + '/build/icon.ico',
+        icon: __dirname + "/build/icon.ico",
         show: false,
         "web-preferences": {
             plugins: true,
@@ -131,8 +128,7 @@ function showMainWindow() {
 
     // Reduces white flash when opening the program
     mainWindow.webContents.on("did-finish-load", function () {
-        if (!hasExecuted)
-        {
+        if (!hasExecuted) {
             mainWindow.webContents.executeJavaScript("setAppVersionText();");
             // everything's loaded, tell the renderer process to do its thing
             mainWindow.webContents.executeJavaScript("loadConfig();");

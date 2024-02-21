@@ -6,22 +6,22 @@
 }
 
 #server-table > .table-striped thead th {
-    background-color: #DD7D1E;
+    background-color: #dd7d1e;
 }
 
 #server-table > .table-striped tbody tr:nth-of-type(odd) {
-    background-color: #DD7D1E;
+    background-color: #dd7d1e;
 }
 
 #server-listing-placeholder > td {
-    background-color: #A2B229;
+    background-color: #a2b229;
     user-select: none;
     -webkit-user-select: none;
 }
 
 #server-table > .table-striped tbody tr:nth-of-type(even),
 th {
-    background-color: #A2B229;
+    background-color: #a2b229;
 }
 
 #server-table {
@@ -40,7 +40,7 @@ img {
 }
 
 :root {
-    --gray-dark: #0A370E;
+    --gray-dark: #0a370e;
     --primary: #0099ff;
     --secondary: #ffffff;
     --dark: #ffffff;
@@ -82,44 +82,44 @@ body {
 }
 
 #of-aboutmodal > .modal-dialog > .modal-content {
-    background-color: #0D4A4C;
-    border-color: #15696F;
+    background-color: #0d4a4c;
+    border-color: #15696f;
 }
 
 #of-addservermodal > .modal-dialog > .modal-content {
-    background-color: #0D4A4C;
-    border-color: #15696F;
+    background-color: #0d4a4c;
+    border-color: #15696f;
 }
 
 #of-addloginmodal > .modal-dialog > .modal-content {
-    background-color: #0D4A4C;
-    border-color: #15696F;
+    background-color: #0d4a4c;
+    border-color: #15696f;
 }
 
 #of-editservermodal > .modal-dialog > .modal-content {
-    background-color: #0D4A4C;
-    border-color: #15696F;
+    background-color: #0d4a4c;
+    border-color: #15696f;
 }
 
 #of-deleteservermodal > .modal-dialog > .modal-content {
-    background-color: #0D4A4C;
-    border-color: #15696F;
+    background-color: #0d4a4c;
+    border-color: #15696f;
 }
 
 #of-restoreserversmodal > .modal-dialog > .modal-content {
-    background-color: #0D4A4C;
-    border-color: #15696F;
+    background-color: #0d4a4c;
+    border-color: #15696f;
 }
 
 .form-control,
 .form-control:focus {
-    border-color: #15696F;
+    border-color: #15696f;
     background-color: #222;
     color: #fff;
 }
 
 select {
-    border-color: #15696F;
+    border-color: #15696f;
     background-color: #222;
     color: #fff;
 }
@@ -153,5 +153,5 @@ button > i {
     margin: 0;
     top: 40%;
     -ms-transform: translateY(40%);
-    transform: translateY(40%);  
+    transform: translateY(40%);
 }
