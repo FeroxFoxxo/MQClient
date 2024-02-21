@@ -73,6 +73,10 @@ body {
     background-color: #33aa33;
 }
 
+.btn-warning {
+    background-color: #ff8822;
+}
+
 .btn-danger {
     background-color: #bb2222;
 }
@@ -83,6 +87,11 @@ body {
 }
 
 #of-addservermodal > .modal-dialog > .modal-content {
+    background-color: #0D4A4C;
+    border-color: #15696F;
+}
+
+#of-addloginmodal > .modal-dialog > .modal-content {
     background-color: #0D4A4C;
     border-color: #15696F;
 }

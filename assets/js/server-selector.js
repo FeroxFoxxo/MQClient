@@ -9,7 +9,6 @@ var versionsPath = path.join(userData, "versions.json");
 
 var versionArray;
 var serverArray;
-var config;
 
 function enableServerListButtons() {
     $("#of-connect-button").removeClass("disabled");
@@ -60,7 +59,8 @@ function addServer() {
             ? "http://localhost/"
             : $("#addserver-ipinput").val();
     server["version"] = $("#addserver-versionselect option:selected").text();
-    //server['endpoint'] =
+    server["username"] = "";
+    server["password"] = "";
 
     jsonToModify["servers"].push(server);
 
@@ -172,7 +172,7 @@ function setGameInfo(serverUUID) {
 
     console.log("User data path: " + userData);
 
-    launchGame();
+    //launchGame();
 }
 
 // Returns the UUID of the server with the selected background color.
@@ -181,7 +181,7 @@ function getSelectedServer() {
     return $("#server-tablebody > tr.bg-primary").prop("id");
 }
 
-function connectToServer() {
+function launchConnection() {
     // Get ID of the selected server, which corresponds to its UUID in the json
     console.log("Connecting to server with UUID of " + getSelectedServer());
 
@@ -191,15 +191,87 @@ function connectToServer() {
     $("#of-serverselector").fadeOut("slow", function () {
         setTimeout(function () {
             $("body,html").css("pointer-events", "");
-            setGameInfo(getSelectedServer());
+            launchGame();
         }, 200);
     });
+}
+
+function login() {
+    // Get ID of the selected server, which corresponds to its UUID in the json
+    console.log("Logging in...");
+
+    var ajaxUrl = window.ipAddress + "/api/getHost";
+    console.log("Sending request to " + ajaxUrl);
+
+    $.ajax({
+        url: ajaxUrl,
+        type: 'GET'
+    }).done(function(response) {
+        window.host = response;
+
+        setLoginInformation();
+
+        window.username = $("#addlogin-usernameinput").val();
+        window.password = $("#addlogin-passwordinput").val();
+        
+        console.log("Host: " + window.host + ", username: " + window.username + ", password: " + window.password);
+
+        launchConnection();
+    });
+}
+
+function setLoginInformation() {
+    var jsonToModify = JSON.parse(remotefs.readFileSync(serversPath));
+
+    $.each(jsonToModify["servers"], function (key, value) {
+        if (value["uuid"] == getSelectedServer()) {
+            value["username"] = $("#addlogin-usernameinput").val();
+            value["password"] = $("#addlogin-passwordinput").val();
+        }
+    });
+
+    remotefs.writeFileSync(serversPath, JSON.stringify(jsonToModify, null, 4));
+}
+
+function loadLoginInformation() {
+    var jsonToModify = JSON.parse(remotefs.readFileSync(serversPath));
+
+    var username = "";
+    var password = "";
+    
+    $.each(jsonToModify["servers"], function (key, value) {
+        if (value["uuid"] == getSelectedServer()) {
+            username = value["username"];
+            password = value["password"];
+        }
+    });
+
+    console.log("Setting username to " + username);
+    console.log("Setting password to " + password);
+    
+    $("#addlogin-usernameinput").val(username);
+    $("#addlogin-passwordinput").val(password);
+}
+
+function connectToServer() {
+    // Get ID of the selected server, which corresponds to its UUID in the json
+    console.log("Connecting to server with UUID of " + getSelectedServer());
+
+    setGameInfo(getSelectedServer());
+    loadLoginInformation();
 }
 
 // If applicable, deselect currently selected server.
 function deselectServer() {
     disableServerListButtons();
     $(".server-listing-entry").removeClass("bg-primary");
+}
+
+function createAccount(){
+    var accountPage = window.ipAddress + "/en/Signup";
+    console.log("Account page redirected: " + accountPage);
+
+    window.open(accountPage);
 }
 
 $("#server-table").on("click", ".server-listing-entry", function (event) {

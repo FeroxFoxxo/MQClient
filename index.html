@@ -110,6 +110,10 @@
                         <div class="col-4 d-inline-flex justify-content-end">
                             <button
                                 class="btn btn-primary disabled"
+                                data-toggle="modal"
+                                data-bs-tooltip=""
+                                data-placement="bottom"
+                                data-target="#of-addloginmodal"
                                 id="of-connect-button"
                                 type="button"
                                 onclick="connectToServer()"
@@ -252,7 +256,7 @@
                                     >Game Version:&nbsp;</label
                                 ><select
                                     class="form-control w-50"
-                                    id="addserver-versionselect"
+                                    id="editserver-versionselect"
                                     required=""
                                     style="margin-left: -5px"
                                 ></select>
@@ -275,6 +279,84 @@
                                 onclick="addServer();"
                             >
                                 Save
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div
+                class="modal fade"
+                role="dialog"
+                tabindex="-1"
+                id="of-addloginmodal"
+            >
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Login</h4>
+                            <button
+                                type="button"
+                                class="close"
+                                data-dismiss="modal"
+                                aria-label="Close"
+                            >
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="addlogin-form" class="needs-validation">
+                                <label for="addlogin-usernameinput"
+                                    >Username</label
+                                ><input
+                                    class="form-control form-row w-75"
+                                    type="text"
+                                    id="addlogin-usernameinput"
+                                    placeholder="username"
+                                    required=""
+                                    minlength="1"
+                                    maxlength="70"
+                                /><label for="addlogin-passwordinput"
+                                    >Password</label
+                                ><input
+                                    class="form-control form-row w-75"
+                                    type="text"
+                                    id="addlogin-passwordinput"
+                                    placeholder="password"
+                                    required=""
+                                    minlength="1"
+                                    maxlength="70"
+                                />
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button
+                                class="btn btn-primary border rounded border-primary btn-danger border-danger"
+                                id="addlogin-cancel"
+                                type="button"
+                                data-dismiss="modal"
+                            >
+                                Cancel</button
+                            >
+                            <button
+                                class="btn btn-primary border rounded border-primary btn-warning border-warning"
+                                data-toggle="tooltip"
+                                data-bs-tooltip=""
+                                id="addlogin-create"
+                                type="button"
+                                title="Create an Account"
+                                onclick="createAccount();"
+                            >
+                            Create an Account</button
+                            >
+                            <button
+                                class="btn btn-primary border rounded border-primary btn-success border-success"
+                                id="addlogin-loginbutton"
+                                type="submit"
+                                data-dismiss="modal"
+                                form="addlogin-form"
+                                onclick="login();"
+                            >
+                                Login
                             </button>
                         </div>
                     </div>
@@ -322,12 +404,15 @@
                                     pattern="^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]):[0-9]+$"
                                 /><label for="editserver-versionselect"
                                     >Game Version:&nbsp;</label
-                                ><select
-                                    class="form-control w-50"
+                                ><input
+                                    class="form-control form-row w-75"
+                                    type="text"
                                     id="editserver-versionselect"
+                                    placeholder="MQServer.unity3d"
                                     required=""
-                                    style="margin-left: -5px"
-                                ></select>
+                                    minlength="1"
+                                    maxlength="70"
+                                />
                             </form>
                         </div>
                         <div class="modal-footer">

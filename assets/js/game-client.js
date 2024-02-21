@@ -1,8 +1,3 @@
-var host = "";
-var port = "";
-var username = "";
-var password = "";
-
 var gameRunning = false;
 var query_string = "";
 
@@ -22,6 +17,7 @@ cash += "kca";
 
 function GetUnity ()
 {
+    console.log("Accessing GetUnity();")
     return document.getElementById("unityEmbed");
 }
 
@@ -43,9 +39,9 @@ function launchGame() {
     
         { key: "login.auto", value: "true" },
     
-        { key: "login.host", value: host + ":" + port },
-        { key: "login.user", value: username },
-        { key: "login.sid", value: password },
+        { key: "login.host", value: window.host },
+        { key: "login.user", value: window.username },
+        { key: "login.sid", value: window.password },
     
         { key: "asset.log", value: "true" },
         { key: "asset.disableversioning", value: "true" },
