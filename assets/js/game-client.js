@@ -125,7 +125,7 @@ function launchGame() {
         "http://www.unity3d.com/unity-web-player-3.x"
     );
 
-    var srcPath = url + "/" + window.version;
+    var srcPath = url + "/api/getGame/" + window.version;
     console.log("UnityURL: " + srcPath);
 
     embed.setAttribute("id", "unityEmbed");
@@ -146,6 +146,8 @@ function launchGame() {
     var div = document.getElementById("client");
     object.appendChild(embed);
     div.appendChild(object);
+
     document.title = "MQClient";
+
     onResize();
 }

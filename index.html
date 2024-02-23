@@ -46,7 +46,7 @@
                                     <thead>
                                         <tr>
                                             <th>Description</th>
-                                            <th>Game Version</th>
+                                            <th>Player Count</th>
                                         </tr>
                                     </thead>
                                     <tbody id="server-tablebody">
@@ -255,14 +255,7 @@
                                     placeholder="http://localhost/"
                                     required=""
                                     pattern="^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]):[0-9]+$"
-                                /><label for="addserver-versionselect"
-                                    >Game Version:&nbsp;</label
-                                ><select
-                                    class="form-control w-50"
-                                    id="editserver-versionselect"
-                                    required=""
-                                    style="margin-left: -5px"
-                                ></select>
+                                />
                             </form>
                         </div>
                         <div class="modal-footer">
@@ -309,7 +302,7 @@
                         <div class="modal-body">
                             <form id="addlogin-form" class="needs-validation">
                                 <label for="addlogin-usernameinput"
-                                    >Username</label
+                                    >Username:</label
                                 ><input
                                     class="form-control form-row w-75"
                                     type="text"
@@ -318,8 +311,8 @@
                                     required=""
                                     minlength="1"
                                     maxlength="70"
-                                /><label for="addlogin-passwordinput"
-                                    >Password</label
+                                /><br /><label for="addlogin-passwordinput"
+                                    >Password:</label
                                 ><input
                                     class="form-control form-row w-75"
                                     type="text"
@@ -328,7 +321,20 @@
                                     required=""
                                     minlength="1"
                                     maxlength="70"
-                                />
+                                /><br />
+                                <label for="addlogin-versionselect"
+                                    >Select Game Version:&nbsp;</label
+                                ><select
+                                    class="form-control w-50"
+                                    id="addlogin-versionselect"
+                                    required=""
+                                    style="margin-left: -5px"
+                                ></select
+                                ><br />
+                                <label>Default Version: </label>
+                                <label id="addlogin-defaultversion"
+                                    >UNKNOWN</label
+                                >
                             </form>
                         </div>
                         <div class="modal-footer">
@@ -405,16 +411,6 @@
                                     placeholder="http://localhost/"
                                     required=""
                                     pattern="^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]):[0-9]+$"
-                                /><label for="editserver-versionselect"
-                                    >Game Version:&nbsp;</label
-                                ><input
-                                    class="form-control form-row w-75"
-                                    type="text"
-                                    id="editserver-versionselect"
-                                    placeholder="MQServer.unity3d"
-                                    required=""
-                                    minlength="1"
-                                    maxlength="70"
                                 />
                             </form>
                         </div>

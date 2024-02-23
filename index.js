@@ -30,28 +30,10 @@ console.log("Plugin url: " + plugin);
 app.commandLine.appendSwitch("no-proxy-server");
 
 var userData = app.getPath("userData");
-var configPath = path.join(userData, "config.json");
 var serversPath = path.join(userData, "servers.json");
-var versionsPath = path.join(userData, "versions.json");
 
-function initialSetup(firstTime) {
-    if (!firstTime) {
-        // Back everything up, just in case
-        fs.copySync(configPath, configPath + ".bak");
-        fs.copySync(serversPath, serversPath + ".bak");
-        fs.copySync(versionsPath, versionsPath + ".bak");
-    } else {
-        // First-time setup
-        // Copy default servers
-        fs.copySync(
-            path.join(__dirname, "/defaults/servers.json"),
-            serversPath
-        );
-    }
-
-    // Copy default versions and config
-    fs.copySync(path.join(__dirname, "/defaults/versions.json"), versionsPath);
-    fs.copySync(path.join(__dirname, "/defaults/config.json"), configPath);
+function initialSetup() {
+    fs.copySync(path.join(__dirname, "/defaults/servers.json"), serversPath);
 
     console.log("JSON files copied.");
     showMainWindow();
@@ -91,22 +73,16 @@ app.on("ready", function () {
 
     // Check for first run
     try {
-        if (!fs.existsSync(configPath)) {
-            console.log("Config file not found. Running initial setup.");
-            initialSetup(true);
+        if (!fs.existsSync(serversPath)) {
+            console.log("Server file not found. Running initial setup.");
+            initialSetup();
         } else {
-            var config = fs.readJsonSync(configPath);
-            if (!config["last-version-initialized"]) {
-                console.log("Pre-1.0 config detected. Running migration.");
-                initialSetup(false);
-            } else {
-                showMainWindow();
-            }
+            showMainWindow();
         }
     } catch (ex) {
         dialog.showErrorBox(
             "Error!",
-            "An error occurred while checking for the config. Make sure you have sufficent permissions."
+            "An error occurred while checking for the server list. Make sure you have sufficent permissions."
         );
         app.quit();
     }
@@ -131,8 +107,6 @@ function showMainWindow() {
         if (!hasExecuted) {
             mainWindow.webContents.executeJavaScript("setAppVersionText();");
             // everything's loaded, tell the renderer process to do its thing
-            mainWindow.webContents.executeJavaScript("loadConfig();");
-            mainWindow.webContents.executeJavaScript("loadGameVersions();");
             mainWindow.webContents.executeJavaScript("loadServerList();");
 
             hasExecuted = true;

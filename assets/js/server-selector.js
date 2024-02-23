@@ -3,11 +3,8 @@ var remotefs = remote.require("fs-extra");
 var path = remote.require("path");
 
 var userData = remote.require("app").getPath("userData");
-var configPath = path.join(userData, "config.json");
 var serversPath = path.join(userData, "servers.json");
-var versionsPath = path.join(userData, "versions.json");
 
-var versionArray;
 var serverArray;
 
 function enableServerListButtons() {
@@ -50,17 +47,20 @@ function addServer() {
 
     var server = {};
     server["uuid"] = uuidv4();
+
     server["description"] =
         $("#addserver-descinput").val().length == 0
             ? "My MQ Server"
             : $("#addserver-descinput").val();
+
     server["ip"] =
         $("#addserver-ipinput").val().length == 0
             ? "http://localhost/"
             : $("#addserver-ipinput").val();
-    server["version"] = $("#addserver-versionselect option:selected").text();
+
     server["username"] = "";
     server["password"] = "";
+    server["version"] = "";
 
     jsonToModify["servers"].push(server);
 
@@ -76,13 +76,11 @@ function editServer() {
                 $("#editserver-descinput").val().length == 0
                     ? value["description"]
                     : $("#editserver-descinput").val();
+
             value["ip"] =
                 $("#editserver-ipinput").val().length == 0
                     ? value["ip"]
                     : $("#editserver-ipinput").val();
-            value["version"] = $(
-                "#editserver-versionselect option:selected"
-            ).text();
         }
     });
 
@@ -112,20 +110,6 @@ function restoreDefaultServers() {
     loadServerList();
 }
 
-function loadGameVersions() {
-    var versionJson = remotefs.readJsonSync(versionsPath);
-    versionArray = versionJson["versions"];
-    $.each(versionArray, function (key, value) {
-        $(new Option(value.name, "val")).appendTo("#addserver-versionselect");
-        $(new Option(value.name, "val")).appendTo("#editserver-versionselect");
-    });
-}
-
-function loadConfig() {
-    // Load config object globally
-    config = remotefs.readJsonSync(configPath);
-}
-
 function loadServerList() {
     var serverJson = remotefs.readJsonSync(serversPath);
     serverArray = serverJson["servers"];
@@ -141,14 +125,28 @@ function loadServerList() {
             var row = document.createElement("tr");
             row.className = "server-listing-entry";
             row.setAttribute("id", value.uuid);
+
             var cellName = document.createElement("td");
             cellName.textContent = value.description;
-            var cellVersion = document.createElement("td");
-            cellVersion.textContent = value.version;
-            cellVersion.className = "text-monospace";
+
+            var cellCount = document.createElement("td");
+            cellCount.textContent = "Loading...";
+            cellCount.className = "text-monospace";
+
+            var ajaxUrl = value.ip + "/api/getPlayers";
+
+            console.log("Loading player count from " + ajaxUrl);
+
+            $.ajax({
+                url: ajaxUrl,
+                type: "GET",
+            }).done(function (response) {
+                cellCount.textContent = response;
+            });
 
             row.appendChild(cellName);
-            row.appendChild(cellVersion);
+            row.appendChild(cellCount);
+
             $("#server-tablebody").append(row);
         });
     } else {
@@ -162,17 +160,11 @@ function setGameInfo(serverUUID) {
     var result = serverArray.filter(function (obj) {
         return obj.uuid === serverUUID;
     })[0];
-    var gameVersion = versionArray.filter(function (obj) {
-        return obj.name === result.version;
-    })[0];
 
     // game-client.js needs to access this
     window.ipAddress = result.ip;
-    window.version = gameVersion.url;
 
     console.log("User data path: " + userData);
-
-    //launchGame();
 }
 
 // Returns the UUID of the server with the selected background color.
@@ -201,7 +193,7 @@ function login() {
     console.log("Logging in...");
 
     var ajaxUrl = window.ipAddress + "/api/getHost";
-    console.log("Sending request to " + ajaxUrl);
+    console.log("Sending host request to " + ajaxUrl);
 
     $.ajax({
         url: ajaxUrl,
@@ -213,6 +205,7 @@ function login() {
 
         window.username = $("#addlogin-usernameinput").val();
         window.password = $("#addlogin-passwordinput").val();
+        window.version = $("#addlogin-versionselect option:selected").text();
 
         console.log(
             "Host: " +
@@ -220,7 +213,9 @@ function login() {
                 ", username: " +
                 window.username +
                 ", password: " +
-                window.password
+                window.password +
+                ", version: " +
+                window.version
         );
 
         launchConnection();
@@ -234,6 +229,9 @@ function setLoginInformation() {
         if (value["uuid"] == getSelectedServer()) {
             value["username"] = $("#addlogin-usernameinput").val();
             value["password"] = $("#addlogin-passwordinput").val();
+            value["version"] = $(
+                "#addlogin-versionselect option:selected"
+            ).text();
         }
     });
 
@@ -245,11 +243,57 @@ function loadLoginInformation() {
 
     var username = "";
     var password = "";
+    var version = "";
 
     $.each(jsonToModify["servers"], function (key, value) {
         if (value["uuid"] == getSelectedServer()) {
             username = value["username"];
             password = value["password"];
+            version = value["version"];
+
+            var ajaxUrl = window.ipAddress + "/api/getVersions";
+            console.log("Sending version request to " + ajaxUrl);
+
+            console.log("Found previous version " + version);
+
+            $.ajax({
+                url: ajaxUrl,
+                type: "GET",
+            }).done(function (response) {
+                versionArray = response["versions"];
+
+                console.log(
+                    "Found versions: " + versionArray + " from " + response
+                );
+
+                var defaultVersion = response["defaultVersion"];
+
+                $("#addlogin-defaultversion").text(defaultVersion);
+
+                console.log("Found default version: " + defaultVersion);
+
+                console.log("Attempting to set version to " + version);
+
+                if (isEmpty(version)) {
+                    version = defaultVersion;
+                    console.log(
+                        "Version was empty! Setting to default " +
+                            defaultVersion
+                    );
+                }
+                {
+                    console.log("Setting version " + version + " in list...");
+                }
+
+                $.each(versionArray, function (key, value) {
+                    console.log("Adding option: " + value);
+                    var option = new Option(value, "val");
+
+                    $(option).appendTo("#addlogin-versionselect");
+
+                    if (value == version) $(option).prop("selected", true);
+                });
+            });
         }
     });
 
@@ -258,6 +302,10 @@ function loadLoginInformation() {
 
     $("#addlogin-usernameinput").val(username);
     $("#addlogin-passwordinput").val(password);
+}
+
+function isEmpty(str) {
+    return !str || str.length === 0;
 }
 
 function connectToServer() {
@@ -300,14 +348,6 @@ $("#of-editservermodal").on("show.bs.modal", function (e) {
         if (value["uuid"] == getSelectedServer()) {
             $("#editserver-descinput")[0].value = value["description"];
             $("#editserver-ipinput")[0].value = value["ip"];
-
-            var versionIndex = -1;
-            $.each($("#editserver-versionselect")[0], function (key, val) {
-                if (val.text === value["version"]) {
-                    versionIndex = key;
-                }
-            });
-            $("#editserver-versionselect")[0].selectedIndex = versionIndex;
         }
     });
 });
