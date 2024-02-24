@@ -1,9 +1,6 @@
 var gameRunning = false;
 var query_string = "";
 
-var projName = "monk";
-var cash = "nic";
-
 function onResize() {
     if (gameRunning == true) {
         var unity = document.getElementById("unityEmbed");
@@ -12,16 +9,32 @@ function onResize() {
     }
 }
 
-projName += "eyqu";
-cash += "kca";
-
 function GetUnity() {
     console.log("Accessing GetUnity();");
     return document.getElementById("unityEmbed");
 }
 
-projName += "est";
-cash += "sh";
+var MQHandler = function() {
+    var mqHandler = {};
+
+    mqHandler.function = function() {
+    };
+
+    return mqHandler;
+};
+
+var mq = MQHandler();
+
+var Stats = function() {
+    var stats = {};
+
+    stats.function = function() {
+    };
+
+    return stats;
+};
+
+var MQStats = Stats();
 
 function launchGame() {
     gameRunning = true;
@@ -34,6 +47,17 @@ function launchGame() {
     var url = window.ipAddress;
     query_string = "";
 
+    var projName = revStr("tseuqyeknom");
+    var cash = revStr("hsackcin");
+    
+    var fullscreen = "true";
+
+    if (process.env.npm_node_execpath) {
+        fullscreen = "false";
+    }
+
+    console.log("Setting fullscreen mode to: " + fullscreen);
+    
     var properties = [
         { key: "login.auto", value: "true" },
 
@@ -70,7 +94,7 @@ function launchGame() {
         { key: projName + ".unity.enableclockdriftprediction", value: "true" },
         { key: projName + ".unity.networktimeout", value: "120" },
 
-        { key: projName + ".unity.screenstatus.fullscreen", value: "true" },
+        { key: projName + ".unity.screenstatus.fullscreen", value: fullscreen},
 
         { key: projName + ".unity.url." + cash, value: url + "/Cash" },
         { key: projName + ".unity.url.membership", value: url + "/Membership" },
@@ -150,4 +174,8 @@ function launchGame() {
     document.title = "MQClient";
 
     onResize();
+}
+
+function revStr(str) {
+    return str.split("").reverse().join("");
 }

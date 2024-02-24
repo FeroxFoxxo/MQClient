@@ -11,6 +11,7 @@ var mainWindow = null;
 var hasExecuted = false;
 
 var unityHomeDir = path.join(__dirname, "../../WebPlayer");
+
 // If running in non-packaged / development mode, this dir will be slightly different
 if (process.env.npm_node_execpath) {
     unityHomeDir = path.join(app.getAppPath(), "/build/WebPlayer");
